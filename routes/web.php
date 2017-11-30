@@ -22,3 +22,10 @@ Route::get('/home', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('produtos', 'ProdutosController');
+
+Route::resource('pedidos', 'PedidosController');
+Route::resource('usuarios', 'UsuariosController');
+Route::post('itens-pedido', 'ItemPedidoController@store');
+Route::delete('itens-pedido/{itemPedido}', 'ItemPedidoController@destroy');

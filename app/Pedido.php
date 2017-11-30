@@ -22,4 +22,12 @@ class Pedido extends Model
         return $this->hasMany('App\ListaProduto');
     }    
 
+    public function totalPedido()
+    {
+        $total = 0;
+        foreach($this->itens as $item):
+            $total += $item->totalItem();
+        endforeach;
+        return $total;
+    }
 }

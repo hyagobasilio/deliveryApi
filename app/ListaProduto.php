@@ -18,9 +18,10 @@ class ListaProduto extends Model
     public function produto() {
     	return $this->belongsTo('App\Product', 'produto_id');
     }
-    
-    public function produdcts() {
-    	return $this->hasMany('Product', 'produto_id');
+
+    public function totalItem()
+    {
+        return $this->quantidade * $this->produto->price;
     }
 
 }
