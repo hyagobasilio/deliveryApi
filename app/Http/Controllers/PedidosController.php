@@ -42,7 +42,7 @@ class PedidosController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate($perPage);
         } else {
-            $pedidos = Pedido::orderBy('id','desc')->paginate($perPage);
+            $pedidos = Pedido::orderBy('id','desc')->with('user')->paginate($perPage);
         }
         
         return view('pedidos.index', compact('pedidos'));

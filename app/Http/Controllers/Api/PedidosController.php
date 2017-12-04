@@ -23,7 +23,7 @@ class PedidosController extends Controller
     		$p = new ListaProduto();
     		$p->produto_id = $item['id'];
     		$p->quantidade = $item['quantidade'];
-    		$p->observacao = $item['observacao'];
+    		$p->observacao = isset($item['observacao']) ? $item['observacao'] : '';
     		$p->pedido_id  = $pedido->id;
     		$p->save();
     	}

@@ -30,14 +30,24 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Endereco</th><th>Numero</th><th>Bairro</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Cliente</th>
+                                        <th>Status</th>
+                                        <th>Endereco</th>
+                                        <th>Numero</th>
+                                        <th>Total</th>
+                                        <th>Bairro</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($pedidos as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        <td><span class="badge badge-info">Recebido</span></td>
                                         <td>{{ $item->endereco }}</td>
+                                        <td>{{ $item->numero }}</td>
                                         <td>{{ $item->totalPedido() }}</td>
                                         <td>{{ $item->bairro }}</td>
                                         <td>

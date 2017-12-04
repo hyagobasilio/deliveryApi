@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {
+
     protected $fillable = [
     	'endereco',
     	'numero',
@@ -21,6 +22,11 @@ class Pedido extends Model
     public function itens(){
         return $this->hasMany('App\ListaProduto');
     }    
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
 
     public function totalPedido()
     {

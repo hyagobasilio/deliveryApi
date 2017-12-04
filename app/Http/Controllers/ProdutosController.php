@@ -36,9 +36,10 @@ class ProdutosController extends Controller
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->orWhere('price', 'LIKE', "%$keyword%")
                 ->orWhere('photo', 'LIKE', "%$keyword%")
+                ->orderBy('id','desc')
                 ->paginate($perPage);
         } else {
-            $produtos = Product::paginate($perPage);
+            $produtos = Product::orderBy('id','desc')->paginate($perPage);
         }
 
         return view('produtos.index', compact('produtos'));
@@ -78,7 +79,7 @@ class ProdutosController extends Controller
 
     
         Image::make($image->getRealPath())->resize(800, 600)->save($path);
-        Image::make($image->getRealPath())->resize(200, 200)->save($path_mini);
+        Image::make($image->getRealPath())->resize(250, 200)->save($path_mini);
         $requestData['photo'] = $filename;
        }
         
@@ -131,7 +132,11 @@ class ProdutosController extends Controller
         if($request->file())
         {
          $this->validate($request, [
-            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo'         => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price'         => 'required',
+            'description'   => 'required',
+            'name'          => 'required'
+
         ]);
         $image = $request->file('photo');
         $filename  = time() . '.' . $image->getClientOriginalExtension();
@@ -141,7 +146,7 @@ class ProdutosController extends Controller
 
     
         Image::make($image->getRealPath())->resize(800, 600)->save($path);
-        Image::make($image->getRealPath())->resize(200, 200)->save($path_mini);
+        Image::make($image->getRealPath())->resize(250, 200)->save($path_mini);
         $requestData['photo'] = $filename;
        }
         $produto->update($requestData);
