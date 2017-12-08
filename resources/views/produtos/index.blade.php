@@ -47,7 +47,7 @@
                                         @else
                                         <td><img src="/images/hamburguer.png" class="img-thumbnail"></td>
                                         @endif
-                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->name }} <br> {{ $item->likes()->count() }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>

@@ -9,7 +9,7 @@ class ProductsController extends Controller
 {
     public function index()
     {
-      return Product::orderBy('id', 'desc')->get();
+      return Product::orderBy('id', 'desc')->with('likes')->get();
     }
 
 }

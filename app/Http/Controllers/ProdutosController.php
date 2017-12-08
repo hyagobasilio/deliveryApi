@@ -39,9 +39,8 @@ class ProdutosController extends Controller
                 ->orderBy('id','desc')
                 ->paginate($perPage);
         } else {
-            $produtos = Product::orderBy('id','desc')->paginate($perPage);
+            $produtos = Product::orderBy('id','desc')->with('likes')->paginate($perPage);
         }
-
         return view('produtos.index', compact('produtos'));
     }
 
