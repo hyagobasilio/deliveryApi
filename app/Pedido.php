@@ -15,7 +15,8 @@ class Pedido extends Model
     	'troco',
     	'forma_pagamento',
     	'latitude',
-    	'longitude',
+        'longitude',
+    	'status',
     	'user_id'
     ];
 
@@ -26,6 +27,21 @@ class Pedido extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+    public function colorStatus() {
+        $color = 'default';
+        switch ($this->status) {
+            case 'aguardando':
+                $color = 'info';
+                break;
+            case 'produzindo':
+                $color = 'warning';
+                break;
+            case 'entregue':
+                $color = 'success';
+                break;
+        }
+        return $color;
     }
 
     public function totalPedido()

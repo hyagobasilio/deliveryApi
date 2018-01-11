@@ -45,7 +45,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
                                         <td>{{ $item->user->name }}</td>
-                                        <td><span class="badge badge-info">Recebido</span></td>
+                                        <td>
+                                            <span class="badge badge-{{ $item->colorStatus() }}">{{ $item->status }}</span>
+                                        </td>
                                         <td>{{ $item->endereco }}</td>
                                         <td>{{ $item->numero }}</td>
                                         <td>{{ $item->totalPedido() }}</td>

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Illuminate\Http\Request;
-
+use Validator;
 class UsuariosController extends Controller
 {
     /**
@@ -93,9 +93,43 @@ class UsuariosController extends Controller
     public function update(Request $request, User $usuario)
     {
         
-        $requestData = $request->all();
+        //$requestData = $request->all();
+        $data = $request->all();
+        $regras = [
+        'name' => 'required|string|max:150',
+        'email' => 'required|string|email|max:255|unique:users,id,'.$request->id,
+        'telefone' => 'required',
+        ];
+        if(!empty($request->password)) {
+            $regras['password'] = 'min:6';
+        }
+        $validator = Validator::make($data, $regras,
+        [
+        'name.required' => 'O campo nome é obrigatório.',
+        'telefone.required' => 'O campo telefone é obrigatório.',
+        'email.required' => 'O campo email é obrigatório.',
+        'email.email' => 'Email inválido',
+        'email.unique' => 'Email já cadastrado!',
+        'password.required' => 'O campo Senha é obrigatório.',
+        'password.min' => 'A senha deve ter no mínimo 6 digitos.',
+        ]
+        );
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->telefone = $request->telefone;
+        if(!empty($request->password)) {
+            $usuario->password = bcrypt($request->password);
+        }
+        $usuario->update();
+
         
-        $usuario->update($requestData);
+        //$usuario->update($requestData);
 
         return redirect('usuarios')->with('flash_message', 'Usuário updated!');
     }

@@ -30,11 +30,12 @@ class PedidosController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $pedidos = Pedido::where('endereco', 'LIKE', "%$keyword%")
                 ->orWhere('numero', 'LIKE', "%$keyword%")
+                ->orWhere('status', 'LIKE', "%$keyword%")
                 ->orWhere('bairro', 'LIKE', "%$keyword%")
                 ->orWhere('complemento', 'LIKE', "%$keyword%")
                 ->orWhere('troco', 'LIKE', "%$keyword%")
@@ -55,7 +56,11 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        $users = User::pluck('name', 'id');
+        $users = [];
+        $dados = User::select('name', 'id', 'telefone')->get();
+        foreach ($dados as $value) {
+            $users[$value->id] = "{$value->name} / {$value->telefone}";
+        }
         return view('pedidos.create', compact('users'));
     }
 
