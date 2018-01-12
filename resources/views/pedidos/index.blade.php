@@ -33,6 +33,7 @@
                                         <th>#</th>
                                         <th>Cliente</th>
                                         <th>Status</th>
+                                        <th>Data Hora</th>
                                         <th>Endereco</th>
                                         <th>Numero</th>
                                         <th>Total</th>
@@ -48,6 +49,7 @@
                                         <td>
                                             <span class="badge badge-{{ $item->colorStatus() }}">{{ $item->status }}</span>
                                         </td>
+                                        <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->endereco }}</td>
                                         <td>{{ $item->numero }}</td>
                                         <td>{{ $item->totalPedido() }}</td>

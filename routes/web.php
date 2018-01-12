@@ -30,3 +30,5 @@ Route::resource('usuarios', 'UsuariosController');
 Route::post('itens-pedido', 'ItemPedidoController@store');
 Route::delete('itens-pedido/{itemPedido}', 'ItemPedidoController@destroy');
 
+
+Route::resource('tipo-produto', 'TipoProdutoController');

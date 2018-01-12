@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use App\TipoProduto;
 use Illuminate\Http\Request;
 use Image;
 
@@ -51,7 +52,9 @@ class ProdutosController extends Controller
      */
     public function create()
     {
-        return view('produtos.create');
+        $tipoProduto = TipoProduto::pluck('nome', 'id');
+
+        return view('produtos.create', compact('tipoProduto'));
     }
 
     /**
@@ -112,8 +115,8 @@ class ProdutosController extends Controller
     public function edit($id)
     {
         $produto = Product::findOrFail($id);
-
-        return view('produtos.edit', compact('produto'));
+        $tipoProduto = TipoProduto::pluck('nome', 'id');
+        return view('produtos.edit', compact('produto', 'tipoProduto'));
     }
 
     /**

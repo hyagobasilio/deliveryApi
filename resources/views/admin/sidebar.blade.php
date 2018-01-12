@@ -21,6 +21,16 @@
                         Pedidos
                     </a>
                 </li>
+                <li role="presentation">
+                    <a href="/tipo-produto">
+                        Tipo Produto
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="/produtos">
+                        Produtos
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
