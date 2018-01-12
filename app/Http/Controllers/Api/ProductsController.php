@@ -12,4 +12,8 @@ class ProductsController extends Controller
       return Product::orderBy('id', 'desc')->with('likes')->get();
     }
 
+    public function byCategoriaId($id) {
+    	return Product::where('tipo_produto_id', $id)->get();
+    }
+
 }

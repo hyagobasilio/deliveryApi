@@ -31,17 +31,21 @@ Route::post('users', 'Api\UsersController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
   Route::get('products','Api\ProductsController@index');
+  Route::get('products/category/{id}', 'Api\ProductsController@byCategoriaId');
+
+  Route::get('categorias', 'Api\CategoriasController@index');
 
   Route::get('users','Api\UsersController@index');
   Route::get('users/logado','Api\UsersController@logado');
   Route::post('users/update', 'Api\UsersController@update');
   Route::post('upload','Api\UsersController@uploadImage');
 
-	Route::get('productsafe','Api\ProductsController@index');
-	Route::post('order','Api\OrdersController@store');
+  Route::get('productsafe','Api\ProductsController@index');
+  Route::post('order','Api\OrdersController@store');
 
-	Route::get('pedidos', 'Api\PedidosController@index');
-	Route::post('pedidos', 'Api\PedidosController@store');
+  Route::get('pedidos', 'Api\PedidosController@index');
+  Route::post('pedidos', 'Api\PedidosController@store');
 
   Route::post('like-produtos', 'Api\LikeProdutoController@curtir');
+
 });
