@@ -13,6 +13,8 @@ class Product extends Model
     	return $this->hasMany('App\LikeProduto');
     }
 
-    
+    public function tipoProduto() {
+    	return $this->belongsTo('App\TipoProduto', 'tipo_produto_id');
+    }
 
 }

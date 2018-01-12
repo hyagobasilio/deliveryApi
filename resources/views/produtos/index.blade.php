@@ -33,6 +33,7 @@
                                         <th>#</th>
                                         <th>Foto</th>
                                         <th>Name</th>
+                                        <th>Tipo</th>
                                         <th>Description</th>
                                         <th>Price</th>
                                         <th>Actions</th>
@@ -47,7 +48,8 @@
                                         @else
                                         <td><img src="/images/hamburguer.png" class="img-thumbnail"></td>
                                         @endif
-                                        <td>{{ $item->name }} <br> {{ $item->likes()->count() }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->tipoProduto->nome or '' }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>

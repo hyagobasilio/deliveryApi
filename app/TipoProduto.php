@@ -23,6 +23,6 @@ class TipoProduto extends Model
     public $timestamps = false;
 
     public function produtos() {
-        return $this->hasMany('Products', 'tipo_produto_id');
+        return $this->hasMany('App\Products', 'tipo_produto_id');
     }
 }
