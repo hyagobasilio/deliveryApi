@@ -33,7 +33,9 @@
                                     <tr>
                                         <th>ID</th><td>{{ $usuario->id }}</td>
                                     </tr>
-                                    <tr><th> Name </th><td> {{ $usuario->name }} </td></tr><tr><th> Email </th><td> {{ $usuario->email }} </td></tr>
+                                    <tr><th> Name </th><td> {{ $usuario->name }} </td>
+                                    </tr><tr><th> Email </th><td> {{ $usuario->email }} </td></tr>
+                                </tr><tr><th> Telefone </th><td> {{ $usuario->telefone }} </td></tr>
                                 </tbody>
                             </table>
                         </div>
