@@ -17,4 +17,7 @@ class Product extends Model
     	return $this->belongsTo('App\TipoProduto', 'tipo_produto_id');
     }
 
+    public function pedidos() {
+    	return $this->hasMany('App\ListaProduto','produto_id', 'id');
+    }
 }

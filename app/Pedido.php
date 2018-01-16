@@ -16,8 +16,9 @@ class Pedido extends Model
     	'forma_pagamento',
     	'latitude',
         'longitude',
-    	'status',
-    	'user_id'
+        'status',
+    	'user_id',
+        'funcionario_id',
     ];
 
     public function itens(){
@@ -26,7 +27,12 @@ class Pedido extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User');
+    }
+      
+    public function funcionario()
+    {
+        return $this->belongsTo('App\User', 'funcionario_id', 'id');
     }
     public function colorStatus() {
         $color = 'default';
@@ -51,5 +57,10 @@ class Pedido extends Model
             $total += $item->totalItem();
         endforeach;
         return $total;
+    }
+    
+    public function setFuncionarioIdAttribute($value)
+    {
+        $this->attributes['funcionario_id'] = strtolower($value);
     }
 }

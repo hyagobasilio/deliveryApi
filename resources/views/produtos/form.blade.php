@@ -7,7 +7,7 @@
 <div class="form-group {{ $errors->has('tipo_produto_id') ? 'has-error' : ''}}">
     {!! Form::label('tipo_produto_id', 'Tipo Produto', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('tipo_produto_id',$tipoProduto, null, ['class' => 'form-control']) !!}
+        {!! Form::select('tipo_produto_id',$tipoProduto, $produto->tipo_produto_id, ['class' => 'form-control']) !!}
         {!! $errors->first('tipo_produto_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

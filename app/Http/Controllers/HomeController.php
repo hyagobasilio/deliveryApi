@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pedido;
+use App\Product;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $produtos   = Product::all();
+        $pedidos    = Pedido::all();
+        $clientes   = User::where('admin',0);
+        return view('home', compact('produtos', 'pedidos', 'clientes'));
     }
 }

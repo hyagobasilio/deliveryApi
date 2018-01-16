@@ -35,6 +35,10 @@
                                         <td>{{ $pedido->id }}</td>
                                     </tr>
                                     <tr>
+                                        <th>Cliente:</th>
+                                        <td>{{ $pedido->user->name }}</td>
+                                    </tr>
+                                    <tr>
                                         <th> Endereco </th>
                                         <td> {{ $pedido->endereco }} </td>
                                     </tr>
@@ -61,6 +65,10 @@
                                     <tr>
                                         <th>Total Pedido</th>
                                         <td>  <strong>R$  {{ $pedido->totalPedido() }}</strong> </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Criado por</th>
+                                        <td> {{ $pedido->funcionario->name or '' }} em {{ $pedido->created_at . " / " . $pedido->updated_at }} </td>
                                     </tr>
                                 </tbody>
                             </table>
