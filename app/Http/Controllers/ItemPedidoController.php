@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ListaProduto;
+use App\Product;
 class ItemPedidoController extends Controller
 {
     /**
@@ -23,7 +24,9 @@ class ItemPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        ListaProduto::create($request->all());
+        $dados = $request->all();
+        $dados['preco'] = (Product::find($request->get('produto_id')))->price;
+        ListaProduto::create($dados);
         return redirect("/pedidos/{$request->pedido_id}/edit");
         
     }

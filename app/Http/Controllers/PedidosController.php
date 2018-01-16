@@ -103,7 +103,7 @@ class PedidosController extends Controller
     public function edit(Pedido $pedido)
     {
         $users      = User::pluck('name', 'id');
-        $produtos   = Product::pluck('name', 'id');
+        $produtos   = Product::where('disponivel', 1)->pluck('name', 'id');
         return view('pedidos.edit', compact('pedido', 'users', 'produtos'));
     }
 

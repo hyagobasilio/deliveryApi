@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'description', 'price', 'photo', 'tipo_produto_id'];
+    protected $fillable = ['name',
+     'description',
+     'price', 
+     'photo', 
+     'tipo_produto_id',
+     'disponivel',
+    ];
 
 
     public function likes() {

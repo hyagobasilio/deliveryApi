@@ -12,7 +12,8 @@ class ListaProduto extends Model
     	'produto_id',
     	'observacao',
     	'quantidade',
-    	'pedido_id'
+        'pedido_id',
+    	'preco',
     ];
 
     public function produto() {
@@ -21,7 +22,7 @@ class ListaProduto extends Model
 
     public function totalItem()
     {
-        return $this->quantidade * $this->produto->price;
+        return $this->quantidade * $this->preco;
     }
 
 }

@@ -13,7 +13,7 @@ class ProductsController extends Controller
     }
 
     public function byCategoriaId($id) {
-    	return Product::where('tipo_produto_id', $id)->get();
+    	return Product::where('tipo_produto_id', $id)->where('disponivel',1)->get();
     }
 
 }

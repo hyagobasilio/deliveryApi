@@ -89,7 +89,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration or $item->id }}</td>
                                     <td>{{ $item->produto->name }}</td>
-                                    <td>{{ $item->produto->price }}</td>
+                                    <td>{{ $item->preco }}</td>
                                     <td>{{ $item->quantidade }}</td>
                                     <td>{{ $item->totalItem() }}</td>
                                     <td>{{ $item->observacao }}</td>
@@ -110,6 +110,12 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Total</td>
+                                    <td colspan="6"><strong>R$ {{ $pedido->totalPedido() }}</strong></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

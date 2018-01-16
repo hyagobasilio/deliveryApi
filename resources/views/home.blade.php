@@ -28,7 +28,7 @@
                                     <tbody>
                                         @foreach($produtos as $produto)
                                         <tr>
-                                            <th>{{ $produto->name }}</th><td>{{ $produto->pedidos->count() }}</td>
+                                            <th>{{ $produto->name }}</th><td>{{ $produto->pedidos->sum('quantidade') }}</td>
                                         </tr>
                                         @endforeach
                                         

@@ -91,9 +91,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
                                         <td>{{ $item->produto->name }}</td>
-                                        <td>{{ $item->produto->price }}</td>
+                                        <td>R$ {{ $item->produto->price }}</td>
                                         <td>{{ $item->quantidade }}</td>
-                                        <td>{{ $item->totalItem() }}</td>
+                                        <td>R$ {{ $item->totalItem() }}</td>
                                         <td>{{ $item->observacao }}</td>
                                     </tr>
                                 @endforeach
