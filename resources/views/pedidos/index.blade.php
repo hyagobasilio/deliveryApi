@@ -49,7 +49,7 @@
                                         <td>
                                             <span class="badge badge-{{ $item->colorStatus() }}">{{ $item->status }}</span>
                                         </td>
-                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->created_at->format('d/m/Y H:i:s') }}</td>
                                         <td>{{ $item->endereco }}</td>
                                         <td>{{ $item->numero }}</td>
                                         <td>{{ $item->totalPedido() }}</td>
