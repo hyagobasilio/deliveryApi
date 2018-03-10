@@ -7,7 +7,7 @@
 <div class="form-group {{ $errors->has('disponivel') ? 'has-error' : ''}}">
     {!! Form::label('disponivel', 'Disponível?', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('disponivel',['Não', 'Sim'], $produto->disponivel, ['class' => 'form-control']) !!}
+        {!! Form::select('disponivel',['Não', 'Sim'], null, ['class' => 'form-control']) !!}
         {!! $errors->first('disponivel', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -15,7 +15,7 @@
 <div class="form-group {{ $errors->has('tipo_produto_id') ? 'has-error' : ''}}">
     {!! Form::label('tipo_produto_id', 'Tipo Produto', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('tipo_produto_id',$tipoProduto, $produto->tipo_produto_id, ['class' => 'form-control']) !!}
+        {!! Form::select('tipo_produto_id',$tipoProduto, null, ['class' => 'form-control']) !!}
         {!! $errors->first('tipo_produto_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -23,19 +23,19 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="name" class="col-md-4 control-label">{{ 'Name' }}</label>
     <div class="col-md-6">
-        <input class="form-control" name="name" type="text" id="name" value="{{ $produto->name or ''}}" >
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
     <label for="description" class="col-md-4 control-label">{{ 'Description' }}</label>
     <div class="col-md-6">
-        <textarea class="form-control" rows="5" name="description" type="textarea" id="description" >{{ $produto->description or ''}}</textarea>
+        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
     </div>
 </div><div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     <label for="price" class="col-md-4 control-label">{{ 'Price' }}</label>
     <div class="col-md-6">
-        <input class="form-control" name="price" type="number" step="any" id="price" value="{{ $produto->price or ''}}" >
+        {!! Form::text('price', null, ['class' => 'form-control', 'type' => 'number', 'id' => 'price']) !!}
         {!! $errors->first('price', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

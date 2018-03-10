@@ -26,4 +26,12 @@ class Product extends Model
     public function pedidos() {
     	return $this->hasMany('App\ListaProduto','produto_id', 'id');
     }
+
+    public function totalPedidos() {
+        $total = 0;
+        foreach($this->pedidos as $item):
+            $total += $item->totalItem();
+        endforeach;
+        return $total;
+    }
 }

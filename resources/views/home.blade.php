@@ -23,12 +23,15 @@
                                         <tr>
                                             <th>Nome</th>
                                             <th>Vendidos</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($produtos as $produto)
                                         <tr>
-                                            <th>{{ $produto->name }}</th><td>{{ $produto->pedidos->sum('quantidade') }}</td>
+                                            <th>{{ $produto->name }}</th>
+                                            <td>{{ $produto->pedidos()->sum('quantidade') }}</td>
+                                            <td>R$ {{ $produto->totalPedidos() }}</td>
                                         </tr>
                                         @endforeach
                                         
