@@ -36,7 +36,7 @@
                                     </tr>
                                     <tr>
                                         <th>Cliente:</th>
-                                        <td>{{ $pedido->user->name }}</td>
+                                        <td>{{ $pedido->user->name }} {{ $pedido->user->telefone }}</td>
                                     </tr>
                                     <tr>
                                         <th> Endereco </th>
