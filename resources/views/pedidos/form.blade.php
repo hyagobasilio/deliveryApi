@@ -6,6 +6,20 @@
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
+
+@if(isset($pedido))
+<div class="form-group {{ $errors->has('endereco_id') ? 'has-error' : ''}}">
+    {!! Form::label('endereco_id', 'Endereço', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        <?php 
+            $enderecos = $pedido->user->enderecos()->select(\DB::raw("concat(enderecos.rua, ' ', enderecos.numero, ' ', enderecos.complemento) as endereco "), 'id')->pluck('endereco', 'id');
+         ?>
+        {!! Form::select('endereco_id',$enderecos, null, ['class' => 'form-control select2']) !!}
+        {!! $errors->first('endereco_id', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
+@endif
+
 <div class="form-group {{ $errors->has('endereco') ? 'has-error' : ''}}">
     {!! Form::label('endereco', 'Endereco', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
