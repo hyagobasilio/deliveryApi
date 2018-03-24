@@ -17,7 +17,7 @@
                             'url' => ['pedidos', $pedido->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                        {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
                                     'type' => 'submit',
                                     'class' => 'btn btn-danger btn-xs',
                                     'title' => 'Delete pedido',
@@ -36,7 +36,11 @@
                                     </tr>
                                     <tr>
                                         <th>Cliente:</th>
-                                        <td>{{ $pedido->user->name }} {{ $pedido->user->telefone }}</td>
+                                        <td>
+                                            <a href="/usuarios/{{$pedido->user_id }}">
+                                            {{ $pedido->user->name }} {{ $pedido->user->telefone }}
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th> Endereco </th>

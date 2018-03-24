@@ -2,7 +2,7 @@
 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
     {!! Form::label('user_id', 'Cliente', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('user_id',$users, null, ['class' => 'form-control']) !!}
+        {!! Form::select('user_id',$users, null, ['class' => 'form-control select2']) !!}
         {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

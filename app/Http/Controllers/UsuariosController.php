@@ -23,6 +23,7 @@ class UsuariosController extends Controller
         if (!empty($keyword)) {
             $usuarios = User::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
+                ->orWhere('telefone', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
         } else {
             $usuarios = User::paginate($perPage);

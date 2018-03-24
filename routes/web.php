@@ -27,8 +27,12 @@ Route::resource('produtos', 'ProdutosController');
 
 Route::resource('pedidos', 'PedidosController');
 Route::resource('usuarios', 'UsuariosController');
+
 Route::post('itens-pedido', 'ItemPedidoController@store');
 Route::delete('itens-pedido/{itemPedido}', 'ItemPedidoController@destroy');
+
+Route::post('enderecos', 'EnderecosController@store');
+Route::delete('enderecos/{itemPedido}', 'EnderecosController@destroy');
 
 
 Route::resource('tipo-produto', 'TipoProdutoController');

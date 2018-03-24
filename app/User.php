@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function enderecos() {
+        return $this->hasMany('App\Endereco');
+    }
+
     public function pedidos() {
         return $this->hasMany('App\Pedido');
     }

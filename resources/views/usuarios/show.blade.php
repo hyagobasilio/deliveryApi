@@ -42,6 +42,33 @@
 
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Endereços</div>
+                    <a href="/enderecos/create?user_id={{$usuario->id}}"></a>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <th>Endereço</th>
+                                    <th>Ações</th>
+                                </thead>
+                                <tbody>
+                                    @foreach($usuario->enderecos as $endereco)
+                                    <tr>
+                                        <td>{{ $endereco->rua }} - {{ $endereco->numero }}
+                                         {{ $endereco->complemento }}, {{ $endereco->cidade }}</td>
+                                        <td>
+                                            <a href="/enderecos/{{$endereco->id}}/edit" >Editar</a>
+                                            <a href="/enderecos/{{$endereco->id}}/edit" >Deletar</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
