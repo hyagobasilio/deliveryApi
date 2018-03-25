@@ -20,6 +20,10 @@
                                 @endforeach
                             </ul>
                         @endif
+                        
+                        @if (isset($produto))
+                        {!! Form::model($produto, array('url' => url('produtos/' . $produto->id ), 'method' => 'put', 'class' => 'form-horizontal form-label-left', 'files'=> true)) !!}
+                        @endif
 
                         <form method="POST" action="{{ url('/produtos/' . $produto->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}

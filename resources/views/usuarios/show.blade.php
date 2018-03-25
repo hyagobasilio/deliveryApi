@@ -68,6 +68,40 @@
                             </table>
                         </div>
                     </div>
+                </div> <!-- fim panel -->
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Local</th>
+                                        <th>Itens</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($usuario->pedidos as $pedido)
+                                    <tr>
+                                        <td>{{ $pedido->created_at->format('d/m/Y h:i:s')}}</td>
+                                        <td>{{ $pedido->rua }}
+                                         - {{ $pedido->endereco->rua or '' }} - {{ $pedido->endereco->numero or '' }}
+                                         {{ $pedido->endereco->complemento or '' }}, {{ $pedido->endereco->cidade or '' }}</td>
+                                        <td>
+                                            
+                                            @foreach($pedido->itens as $item)
+                                            @endforeach
+                                            {{ $item->quantidade }} | {{ $item->produto->name or '' }} {{ $item->preco }} | {{ $item->totalItem() }} <br>
+                                        </td>
+                                        <td>{{ $pedido->totalPedido() }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

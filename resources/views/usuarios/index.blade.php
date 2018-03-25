@@ -39,6 +39,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Telefone</th>
+                                        <th>Pedidos Feitos</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->telefone }}</td>
+                                        <td>{{ $item->pedidos->count() }}</td>
                                         <td>
                                             <a href="{{ url('/usuarios/' . $item->id) }}" title="View usuario"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/usuarios/' . $item->id . '/edit') }}" title="Edit usuario"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
