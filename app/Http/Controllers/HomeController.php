@@ -32,10 +32,11 @@ class HomeController extends Controller
 
         if($request->has('data')) {
 
-            $pedidos = $pedidos->whereDate('created_at', $data);
 
 
             $data = $request->get('data');
+            
+            $pedidos = $pedidos->whereDate('created_at', $data);
 
             $produtos = $produtos->whereExists(function($query) use ($data) {
                 $query->from('lista_produtos')
