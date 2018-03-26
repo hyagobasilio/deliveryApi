@@ -54,6 +54,29 @@
                     </div>
 
                     <a class="btn btn-block btn-warning" href="/pedidos"><i class="fa fa-users"></i> {{ $pedidos->count() }} Pedidos</a>
+
+                    @if(Request::has('data'))
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Quem</th>
+                                <th>Onde</th>
+                                <th>Quanto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $total = 0; ?>
+                            @foreach($pedidos as $pedido)
+                            <?php $total = $pedido->totalPedido(); ?>
+                            <tr>
+                                <td>{{ $pedido->user->name or '' }}</td>
+                                <td>{{ $pedido->endereco }}</td>
+                                <td>{{ $pedido->totalPedido() }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>

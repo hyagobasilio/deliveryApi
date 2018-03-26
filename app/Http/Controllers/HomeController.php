@@ -28,7 +28,12 @@ class HomeController extends Controller
     {
         $produtos   = Product::orderBy('name', 'asc');
 
+        $pedidos    = Pedido::orderBy('created_at', 'desc');
+
         if($request->has('data')) {
+
+            $pedidos = $pedidos->whereDate('created_at', $data);
+
 
             $data = $request->get('data');
 
@@ -43,8 +48,8 @@ class HomeController extends Controller
 
         $produtos = $produtos->get();
 
+        $pedidos = $pedidos->get();
 
-        $pedidos    = Pedido::all();
         $clientes   = User::where('admin',0);
         return view('home', compact('produtos', 'pedidos', 'clientes'));
     }
