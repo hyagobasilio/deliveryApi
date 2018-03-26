@@ -74,6 +74,12 @@
                                 <td>{{ $pedido->totalPedido() }}</td>
                             </tr>
                             @endforeach
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">Total</td>
+                                    <td>{{ $total }}</td>
+                                </tr>
+                            </tfoot>
                         </tbody>
                     </table>
                     @endif
