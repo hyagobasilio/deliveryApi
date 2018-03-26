@@ -67,7 +67,7 @@
                         <tbody>
                             <?php $total = 0; ?>
                             @foreach($pedidos as $pedido)
-                            <?php $total = $pedido->totalPedido(); ?>
+                            <?php $total += $pedido->totalPedido(); ?>
                             <tr>
                                 <td>{{ $pedido->user->name or '' }}</td>
                                 <td>{{ $pedido->endereco }}</td>
