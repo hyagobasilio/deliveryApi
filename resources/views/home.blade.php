@@ -16,6 +16,10 @@
                         </div>
                         <div class="panel-body">
                             <a class="btn btn-info" href="/produtos"><i class="fa fa-users"></i> Ver Produtos</a>
+                            <form action="">
+                                <input type="date" name="data">
+                                <button>Filtrar</button>
+                            </form>
 
                             <div class="table-responsive">
                                 <table class="table table-borderless">
@@ -27,7 +31,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $total = 0; ?>
                                         @foreach($produtos as $produto)
+                                        <?php $total += $produto->totalPedidos(); ?>
                                         <tr>
                                             <th>{{ $produto->name }}</th>
                                             <td>{{ $produto->pedidos()->sum('quantidade') }}</td>
@@ -36,6 +42,12 @@
                                         @endforeach
                                         
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2">Total</td>
+                                            <td><strong>{{ $total }}</strong></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

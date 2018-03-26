@@ -24,9 +24,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produtos   = Product::all();
+        $produtos   = Product::orderBy('name', 'asc');
+
+        if($request->has('data')) {
+
+            $data = $request->get('data');
+
+            $produtos = $produtos->whereExists(function($query) use ($data) {
+                $query->from('lista_produtos')
+                ->whereRaw('lista_produtos.produto_id = products.id')
+                ->join('pedidos', 'pedidos.id', '=', 'lista_produtos.pedido_id')
+                ->whereDate('created_at', $data);
+            });
+
+        }
+
+        $produtos = $produtos->get();
+
+
         $pedidos    = Pedido::all();
         $clientes   = User::where('admin',0);
         return view('home', compact('produtos', 'pedidos', 'clientes'));
