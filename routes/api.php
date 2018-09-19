@@ -23,6 +23,10 @@ Route::group(['middleware' => [\Barryvdh\Cors\HandleCors::class]], function(){
   Route::get('session','Api\PagSeguroController@getSessionId');
 
 });
+Route::post('usuarios', 'UsuariosController@getLogin');
+Route::post('usuarios/cadastro', 'UsuariosController@postSalvarSantinho');
+Route::post('santinho/delete', 'UsuariosController@postDeleteSantinho');
+Route::get('santinho/{id}', 'UsuariosController@getSantinho');
 
 //Route::post('users', 'Api\ProductsController@salvar');
 Route::post('users', 'Api\UsersController@register');

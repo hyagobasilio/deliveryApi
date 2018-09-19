@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Usuario;
+use App\Santinho;
 use Illuminate\Http\Request;
 use Validator;
 class UsuariosController extends Controller
@@ -30,6 +32,33 @@ class UsuariosController extends Controller
         }
 
         return view('usuarios.index', compact('usuarios'));
+    }
+
+    public function postDeleteSantinho(Request $request)
+    {
+        try {
+            $santinho = Santinho::findOrFail($request->id);
+            $usuario = $santinho->usuario;
+            $santinho->delete();
+
+            return ['success' => 'Removido com sucesso!',
+            'santinhos' => $usuario->santinhos ];
+        } catch(\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+
+    }
+
+    public function getSantinhos(Request $request)
+    {
+        try {
+            $santinho = Usuario::findOrFail($request->id);
+            return $santinho->santinhos;
+
+        } catch(\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+
     }
 
     /**
@@ -146,5 +175,56 @@ class UsuariosController extends Controller
     {
         $usuario->delete();
         return redirect('usuarios')->with('flash_message', 'Usuário deleted!');
+    }
+
+    public function getLogin(Request $request) {
+        //return $request->all();
+        $usuario = Usuario::whereUsuario($request->usuario)
+        ->whereSenha($request->senha)
+        ->with('santinhos')
+        ->get();
+        if($usuario->count()) {
+            return $usuario->first();
+        }
+        return [ 'id' => 0];
+    }
+
+    public function postSalvarSantinho(Request $request)
+    {   
+        $dados = $request->all();
+        try {
+
+            if ($request->has('foto')) {
+
+                $image = $request->foto;  // your base64 encoded
+                $image = str_replace('data:image/jpeg;base64,', '', $image);
+                $image = str_replace(' ', '+', $image);
+                $imageName = str_random(10).'.'.'jpg';
+                \File::put(public_path(). '/' . $imageName, base64_decode($image));
+                $dados['foto'] = $imageName;
+            }
+
+            $santinho = Santinho::create($dados);
+            $usuario = $santinho->usuario;
+            return ['success' => 'Cadastrado com sucesso', 'santinhos' => $usuario->santinhos];
+
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
+        return response()->json(['status' => 200]);
+    }
+
+    public function getSantinho($id)
+    {   
+        
+        try {
+
+            $santinho = Santinho::findOrFail($id);
+            return ['success' => 'Cadastrado com sucesso', 'santinho' => $santinho];
+
+        }catch(\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+       
     }
 }

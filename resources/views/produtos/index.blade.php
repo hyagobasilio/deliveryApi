@@ -40,6 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php $x = 1; ?>
                                 @foreach($produtos as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
