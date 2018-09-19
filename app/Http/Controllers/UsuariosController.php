@@ -210,7 +210,7 @@ class UsuariosController extends Controller
             return ['success' => 'Cadastrado com sucesso', 'santinhos' => $usuario->santinhos];
 
         }catch(\Exception $e) {
-            return $e->getMessage();
+            return ['error' => $e->getMessage()];
         }
         return response()->json(['status' => 200]);
     }
