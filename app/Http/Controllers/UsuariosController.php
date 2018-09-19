@@ -202,6 +202,7 @@ class UsuariosController extends Controller
                 $imageName = str_random(10).'.'.'jpg';
                 \File::put(public_path(). '/' . $imageName, base64_decode($image));
                 $dados['foto'] = $imageName;
+                $dados['base64'] = $request->foto;
             }
 
             $santinho = Santinho::create($dados);
