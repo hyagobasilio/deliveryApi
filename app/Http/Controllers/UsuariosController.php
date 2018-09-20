@@ -200,9 +200,14 @@ class UsuariosController extends Controller
                 $image = str_replace('data:image/jpeg;base64,', '', $image);
                 $image = str_replace(' ', '+', $image);
                 $imageName = str_random(10).'.'.'jpg';
-                \File::put(public_path(). '/' . $imageName, base64_decode($image));
+                //resize
+                $full_path = public_path(). '/' . $imageName;
+                \Image::make(base64_decode($image))->resize(135, 100)->save($full_path);
+
+
+                //\File::put(public_path(). '/' . $imageName, base64_decode($image));
                 $dados['foto'] = $imageName;
-                $dados['base64'] = $request->foto;
+                $dados['base64'] = base64_encode(file_get_contents($full_path));
             }
 
             $santinho = Santinho::create($dados);
