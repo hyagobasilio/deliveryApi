@@ -18,7 +18,8 @@ class Santinho extends Model
      'presidente',
      'usuario_id',
      'foto',
-     'base64'
+     'base64',
+     'cidade'
     ];
 
 
